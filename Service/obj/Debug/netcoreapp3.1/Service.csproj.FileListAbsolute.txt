@@ -1,0 +1,11 @@
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\bin\Debug\netcoreapp3.1\Service.deps.json
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\bin\Debug\netcoreapp3.1\Service.dll
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\bin\Debug\netcoreapp3.1\Service.pdb
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.csprojAssemblyReference.cache
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfoInputs.cache
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfo.cs
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.csproj.CopyComplete
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.dll
+C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Service\obj\Debug\netcoreapp3.1\Service.pdb
