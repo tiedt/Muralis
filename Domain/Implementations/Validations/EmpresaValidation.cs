@@ -3,9 +3,9 @@ using static Domain.Shared.Validacao;
 
 namespace Domain.Implementations
 {
-    public class Empresa
+    public class EmpresaValidation
     {
-        public Empresa()
+        public EmpresaValidation()
         {
         }
 

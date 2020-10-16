@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
@@ -13,6 +14,8 @@ namespace Domain.Entities
         [Required(AllowEmptyStrings = false, ErrorMessage = " O Estado é obrigatório.")]
         [Range(minimum: 0, maximum: 26, ErrorMessage = "O Estádo está inválido inválido.")]
         public UnidadeFederacaoSigla UF { get; set; }
+
+        public virtual ICollection<FornecedorEntity> Fornecedor { get; set; }
 
     }
 

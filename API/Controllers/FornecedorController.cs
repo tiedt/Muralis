@@ -1,23 +1,27 @@
-﻿using Domain.Entities;
-using Domain.Implementations;
-using Domain.Interfaces.Repository;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Domain.Entities;
+using Domain.Implementations.Validations;
+using Domain.Interfaces.Repository;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class FornecedorController : ControllerBase
     {
-        protected readonly IEmpresaRepository _service;
+        protected readonly IFornecedorRepository _service;
+        protected readonly IEmpresaRepository _empresa;
 
-        public EmpresaController(IEmpresaRepository service)
+        public FornecedorController(IFornecedorRepository service,IEmpresaRepository empresa)
         {
             _service = service;
+            _empresa = empresa;
         }
 
         [HttpGet]
@@ -59,12 +63,13 @@ namespace Application.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> Post(EmpresaEntity model)
+        public async Task<IActionResult> Post(FornecedorEntity model)
         {
-            var empresa = new EmpresaValidation();
+            var empresa = new FornecedorValidation();
             try
             {
-                var valida = empresa.ValidarDadosEmpresa(model);
+                var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
+                var valida = await empresa.ValidaFornecedor(model, obtemEmpresa);
                 if (valida.Any())
                     throw new Exception(valida);
                 else
@@ -78,7 +83,7 @@ namespace Application.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(EmpresaEntity model)
+        public async Task<IActionResult> Put(FornecedorEntity model)
         {
             try
             {
