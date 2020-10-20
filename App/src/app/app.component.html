@@ -1,0 +1,23 @@
+<ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
+<app-notifications></app-notifications>
+
+<nav class="navbar navbar-expand-sm bg-nav-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li>
+        <a routerLink="cadastro/empresa" class="nav-link" routerLinkActive="active" style="color:white">
+          Empresa
+        </a>
+      </li>
+      <li>
+        <a routerLink="cadastro/fornecedor" class="nav-link" routerLinkActive="active" style="color:white">
+          Fornecedor
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

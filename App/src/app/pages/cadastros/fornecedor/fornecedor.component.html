@@ -1,0 +1,87 @@
+<div class="text-right">
+  <a class="btn btn-sucess" id="btnNovaEmpresa">
+    <button type="button" class="btn btn-success" (click)="novo()">Novo Fornecedor</button>
+  </a>
+</div>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+</form>
+<br>
+<br>
+<br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Nome</td>
+      <td>CNPJ/CPF</td>
+      <td>Data Cadastro</td>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td>{{ item.nome }}</td>
+      <td>{{ item.cpfcnpj }}</td>
+      <td>{{ obterDataCadastro(item.dataCadastro) }}</td>
+      <td>
+        <a class="btn btn-primary" (click)="editar(item.idFornecedor)" style="color:white">Editar</a>
+        <a class="btn btn-danger" (click)="remover(item.idFornecedor)" style="color:white">Remover</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p-dialog header="Cadastrar Fornecedor" [(visible)]="display" [style]="{'width' : '750px'}" [formGroup]="form">
+  <div class="row">
+    <div class="form-group col-md-12">
+      <select class="form-control" name="idEmpresa" id="idEmpresa" formControlName="idEmpresa">
+        <option selected value="null">Selecione a Empresa</option>
+        <option *ngFor="let empresa of listaDeEmpresas" [value]="empresa.idEmpresa">{{empresa.nomeFantasia}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-12">
+      <input required type="text" class="form-control" id="nome" name="nome" formControlName="nome"
+        placeholder="Nome Fornecedor" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <select type="tipoFornecedor" name="tipoFornecedor" class="form-control" formControlName="tipoFornecedor">
+        <option value="-1">Selecione o Tipo da Pessoa</option>
+        <option value="1">Pessoa Física</option>
+        <option value="2">Pessoa Jurídica</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <p-inputMask type="text" mask="(99)999-999-999" name="telefone" formControlName="telefone" placeholder="Telefone"></p-inputMask>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3" *ngIf="obterTipoPessoa() === 1">
+      <p-inputMask type="text" mask="999.999.999-99" name="cpfcnpj" formControlName="cpfcnpj" placeholder="CPF"></p-inputMask>
+    </div>
+    <div class="form-group col-md-6" *ngIf="obterTipoPessoa() === 2">
+      <p-inputMask type="text" mask="99.999.999/9999-99" name="cpfcnpj" formControlName="cpfcnpj" placeholder="CNPJ"
+        [style]="{'width' : '345px'}"></p-inputMask>
+    </div>
+    <div class="form-group col-md-3" *ngIf="obterTipoPessoa() === 1">
+      <p-inputMask mask="99/99/9999" name="dataNascimento" formControlName="dataNascimento"  placeholder="Data de Nascimento" slotChar="dd/mm/aaaa"></p-inputMask>
+  </div>
+    <div class="form-group col-md-3" *ngIf="obterTipoPessoa() === 1">
+        <input pInputText type="text" name="rg" formControlName="rg" placeholder="RG"/>
+    </div>
+</div>
+  <p-footer>
+    <div class="pull-right">
+      <button type="button" class="btn btn-danger" (click)="close()" id="idBtnFecharObjeto">
+        <i class="zmdi zmdi-close-circle"></i> Fechar
+      </button>
+      <button type="button" class="btn btn-success" (click)="salvar()" id="idBtnSalvarObjeto">
+        <i class="zmdi zmdi-shield-check"></i> Salvar
+      </button>
+    </div>
+  </p-footer>
+</p-dialog>
