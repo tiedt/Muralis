@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 
 namespace Application.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmpresaController : ControllerBase
     {
         protected readonly IEmpresaRepository _service;
+        EmpresaValidation empresaValidation = new EmpresaValidation();
 
         public EmpresaController(IEmpresaRepository service)
         {
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllEmpresas")]
         public async Task<IActionResult> GetAll()
         {
             if (!ModelState.IsValid)
@@ -61,12 +62,12 @@ namespace Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(EmpresaEntity model)
         {
-            var empresa = new EmpresaValidation();
+            
             try
             {
-                var valida = empresa.ValidarDadosEmpresa(model);
-                if (valida.Any())
-                    throw new Exception(valida);
+                var validaDadosEmpresa = empresaValidation.ValidarDadosEmpresa(model);
+                if (validaDadosEmpresa.Any())
+                    throw new ArgumentException(validaDadosEmpresa);
                 else
                     return Ok(_service.InsertAsync(model));
 
@@ -82,7 +83,11 @@ namespace Application.Controllers
         {
             try
             {
-                return Ok(_service.UpdateAsync(model));
+                var validaDadosEmpresa = empresaValidation.ValidarDadosEmpresa(model);
+                if (validaDadosEmpresa.Any())
+                    throw new ArgumentException(validaDadosEmpresa);
+                else
+                    return Ok(_service.UpdateAsync(model));
             }
             catch (ArgumentException ex)
             {

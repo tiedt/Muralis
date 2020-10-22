@@ -1,0 +1,192 @@
+<app-titulo [titulo]="titulo"></app-titulo>
+<form [formGroup]="registerForm">
+  <div class="row">
+    <div class="col-md-12">
+      <tabset>
+        <tab heading="Cliente">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Selecione a Empresa</label>
+              <select
+                class="form-control"
+                name="empresaId"
+                id="empresaId"
+                formControlName="empresaId"
+              >
+                <option selected value="null">Selecione a Empresa</option>
+                <option
+                  *ngFor="let empresa of listaEmpresas"
+                  [value]="empresa.id"
+                >
+                  {{ empresa.nomeFantasia }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Nome Completo</label>
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('nome').errors &&
+                    registerForm.get('nome').touched
+                }"
+                formControlName="nome"
+                placeholder="Insira o Nome Completo"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('nome').hasError('required') &&
+                  registerForm.get('nome').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome é obrigatório.
+              </div>
+              <div
+                *ngIf="
+                  registerForm.get('nome').hasError('minlength') &&
+                  registerForm.get('nome').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome deve ter no mínimo 4 Caracters.
+              </div>
+              <div
+                *ngIf="
+                  registerForm.get('nome').hasError('maxlength') &&
+                  registerForm.get('nome').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome deve ter no máximo 50 Caracters.
+              </div>
+            </div>
+        </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label>Tipo Cliente</label>
+              <select
+                class="form-control"
+                formControlName="tipoFornecedor"
+                [ngClass]="{
+                  'is-invalid':
+                    obterTipoFornecedor() == -1 &&
+                    registerForm.get('tipoFornecedor').touched
+                }"
+              >
+                <option value="-1" selected>Selecione</option>
+                <option value="1">Fisica</option>
+                <option value="2">Jurídica</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4" *ngIf="obterTipoFornecedor() == 1">
+              <label>CPF</label>
+              <input
+                mask="000.000.000-00"
+                class="form-control"
+                placeholder="CPF"
+                formControlName="cpfcnpj"
+              />
+            </div>
+            <div class="form-group col-md-4" *ngIf="obterTipoFornecedor() == 2">
+              <label>CNPJ</label>
+              <input
+                mask="00.000.000/0000-00"
+                placeholder="CNPJ"
+                class="form-control"
+                formControlName="cpfcnpj"
+              />
+            </div>
+          </div>
+          <div class="form-row" *ngIf="obterTipoFornecedor() == 1">
+            <div class="form-group col-md-4">
+              <label>RG</label>
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('rg').errors &&
+                    registerForm.get('rg').touched
+                }"
+                formControlName="rg"
+                placeholder="Insira o seu RG"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('rg').hasError('required') &&
+                  registerForm.get('rg').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome é obrigatório.
+              </div>
+              <div
+                *ngIf="
+                  registerForm.get('rg').hasError('minlength') &&
+                  registerForm.get('rg').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome deve ter no mínimo 4 Caracters.
+              </div>
+              <div
+                *ngIf="
+                  registerForm.get('rg').hasError('maxlength') &&
+                  registerForm.get('rg').touched
+                "
+                class="invalid-feedback"
+              >
+                O Nome deve ter no máximo 50 Caracters.
+              </div>
+            </div>
+          
+          <div class="form-group col-md-4">
+            <label>Data Nascimento</label>
+            <input type="text" class="form-control" [(ngModel)]="fornecedor.dataNascimento" bsDatepicker
+              value="{{fornecedor.dataNascimento | DateTimeFormatPipe}}"
+              [bsConfig]="{ dateInputFormat : 'DD/MM/YYYY' }" [ngClass]="{'is-invalid': registerForm.get('dataNascimento').errors
+          && registerForm.get('dataNascimento').touched}" formControlName="dataNascimento" placeholder="">
+            <div *ngIf="registerForm.get('dataNascimento').hasError('required')
+          && registerForm.get('dataNascimento').touched" class="invalid-feedback">
+              Data de Nascimento é obrigatório.
+            </div>
+          </div>
+        </div>
+        </tab>
+        <tab heading="Contato">
+          <div>
+            <div formArrayName="telefoneFornecedor" *ngFor="let telefone of telefoneFornecedor.controls; let i=index">
+              <fieldset [formGroupName]="i" class="form-group">
+                  <button class="btn btn-sm btn-warning mb-1" (click)="removerTelefone(i)">remove</button>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label>Número</label>
+                    <input type="text" mask="(000) 0000-0000" class="form-control"
+                      [ngClass]="{'is-invalid': telefoneFornecedor.get(i+'.numeroTelefone').errors && telefoneFornecedor.get(i+'.numeroTelefone').touched}"
+                      formControlName="numeroTelefone" placeholder="Número">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <button (click)="adicionarTelefone()" class="btn btn-outline-primary">
+              Adicionar Telefone
+            </button>
+          </div>
+        </tab>
+      </tabset>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button
+            [disabled]="!registerForm.valid"
+            class="btn btn-success my-2"
+            (click)="salvarFornecedor()">
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

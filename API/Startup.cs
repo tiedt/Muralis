@@ -1,3 +1,4 @@
+using AutoMapper;
 using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace API
             services.AddMvc();
             Data.Services.ServiceProvider.Register(services);
             services.AddScoped<DatabaseContext>();
+            services.AddAutoMapper(typeof(Startup));
             services.AddCors();
             services.AddControllers()
                  .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
@@ -49,6 +51,8 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger();
 

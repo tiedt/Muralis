@@ -7,10 +7,12 @@ namespace Domain.Entities
     public class EmpresaEntity : BaseEntity
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "O nome da empresa é obrigatório.")]
-        public string NomeEmpresa { get; set; }
+        public string NomeFantasia { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "O CNPJ é obrigatório.")]
         [StringLength(maximumLength:14, ErrorMessage = "O CNPJ incorreto")]
         public string CNPJ { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = " O Estado é obrigatório.")]
         [Range(minimum: 0, maximum: 26, ErrorMessage = "O Estádo está inválido inválido.")]
         public UnidadeFederacaoSigla UF { get; set; }
@@ -23,7 +25,7 @@ namespace Domain.Entities
     public enum UnidadeFederacaoSigla
     {
         [Description("Acre")]
-        AC,
+        AC = 1,
         [Description("Alagoas")]
         AL,
         [Description("Amapá")]
@@ -75,7 +77,9 @@ namespace Domain.Entities
         [Description("Sergipe")]
         SE,
         [Description("Tocantis")]
-        TO
+        TO,
+        [Description("Estrangeiro")]
+        EX
     }
     #endregion
 }

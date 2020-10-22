@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Implementations.Validations;
 using Domain.Interfaces.Repository;
@@ -11,17 +12,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FornecedorController : ControllerBase
     {
         protected readonly IFornecedorRepository _service;
         protected readonly IEmpresaRepository _empresa;
+        private readonly IMapper _mapper;
+        FornecedorValidation fornecedorValidation = new FornecedorValidation();
 
-        public FornecedorController(IFornecedorRepository service,IEmpresaRepository empresa)
+        public FornecedorController(IFornecedorRepository service,IEmpresaRepository empresa, IMapper mapper)
         {
             _service = service;
             _empresa = empresa;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,7 +38,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterTodos = await _service.ObterTodosAsync();
+                var obterTodos = await _service.GetFornecedorAsync();
                 return Ok(obterTodos);
             }
             catch (ArgumentException e)
@@ -43,8 +47,8 @@ namespace Application.Controllers
             }
 
         }
-        [HttpGet("EmpresaId")]
-        public async Task<IActionResult> Get(int EmpresaId)
+        [HttpGet("ObterFornecedorPorId")]
+        public async Task<IActionResult> Get(int FornecedorId)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +57,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterPorId = await _service.ObterPorIdAsync(EmpresaId);
+                var obterPorId = await _service.GetFornecedorAsyncById(FornecedorId);
                 return Ok(obterPorId);
             }
             catch (ArgumentException e)
@@ -65,13 +69,12 @@ namespace Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(FornecedorEntity model)
         {
-            var empresa = new FornecedorValidation();
             try
             {
                 var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
-                var valida = await empresa.ValidaFornecedor(model, obtemEmpresa);
+                var valida = await fornecedorValidation.ValidaFornecedor(model, obtemEmpresa);
                 if (valida.Any())
-                    throw new Exception(valida);
+                    throw new ArgumentException(valida);
                 else
                     return Ok(_service.InsertAsync(model));
 
@@ -87,7 +90,26 @@ namespace Application.Controllers
         {
             try
             {
-                return Ok(_service.UpdateAsync(model));
+                var fornecedor = await _service.GetFornecedorAsyncById(model.Id);
+                if (fornecedor == null) return NotFound();
+
+                var idTelefone = new List<int>();
+                model.TelefoneFornecedor.ForEach(item => idTelefone.Add(item.Id));
+
+                var telefones = fornecedor.TelefoneFornecedor.Where(telefones => !idTelefone.Contains(telefones.Id)).ToArray();
+
+                if (telefones.Length > 0) _service.DeleteRange(telefones);
+
+                _mapper.Map(model, fornecedor);
+
+                var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
+                var valida = await fornecedorValidation.ValidaFornecedor(model, obtemEmpresa);
+
+                if (valida.Any())
+                    throw new ArgumentException(valida);
+                else
+                    return Ok(_service.UpdateAsync(model));
+
             }
             catch (ArgumentException ex)
             {
@@ -95,12 +117,12 @@ namespace Application.Controllers
             }
         }
 
-        [HttpDelete("{EmpresaId}")]
-        public async Task<IActionResult> Delete(int EmpresaId)
+        [HttpDelete("{FornecedorId}")]
+        public async Task<IActionResult> Delete(int FornecedorId)
         {
             try
             {
-                var empresa = await _service.GetByIdAsync(EmpresaId);
+                var empresa = await _service.GetByIdAsync(FornecedorId);
                 if (empresa == null) return NotFound();
 
                 return Ok(_service.DeleteByIdAsync(empresa.Id));

@@ -29,6 +29,16 @@ namespace Domain.Implementations.Validations
                     {
                         return mensagem = "CPF Inválido";
                     }
+                    fornecedor.DataCadastro = DateTime.Now;
+                }
+                if(fornecedor.CPFCNPJ.Length == 14)
+                {
+                    var validaCNPJ = ValidaCNPJ.IsCnpj(fornecedor.CPFCNPJ);
+                    if (!validaCNPJ)
+                    {
+                        return mensagem = "CNPJ Inválido";
+                    }
+                    fornecedor.DataCadastro = DateTime.Now;
                 }
             }
             catch (Exception ex)

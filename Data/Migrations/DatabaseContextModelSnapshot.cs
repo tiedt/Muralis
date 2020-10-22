@@ -31,7 +31,7 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(14)")
                         .HasMaxLength(14);
 
-                    b.Property<string>("NomeEmpresa")
+                    b.Property<string>("NomeFantasia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -70,12 +70,34 @@ namespace Data.Migrations
                     b.Property<string>("RG")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PkFornecedor");
+                    b.Property<int>("TipoFornecedor")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
 
                     b.ToTable("Fornecedor");
+                });
+
+            modelBuilder.Entity("Domain.Entities.TelefoneFornecedorEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FornecedorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NumeroTelefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FornecedorId");
+
+                    b.ToTable("TelefoneFornecedorEntity");
                 });
 
             modelBuilder.Entity("Domain.Entities.FornecedorEntity", b =>
@@ -83,8 +105,16 @@ namespace Data.Migrations
                     b.HasOne("Domain.Entities.EmpresaEntity", "Empresa")
                         .WithMany("Fornecedor")
                         .HasForeignKey("EmpresaId")
-                        .HasConstraintName("FKEmpresa")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.TelefoneFornecedorEntity", b =>
+                {
+                    b.HasOne("Domain.Entities.FornecedorEntity", "Fornecedor")
+                        .WithMany("TelefoneFornecedor")
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

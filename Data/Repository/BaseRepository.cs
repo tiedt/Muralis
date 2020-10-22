@@ -100,6 +100,12 @@ namespace Data.Repository
             return entityResult;
         }
 
+
+        public void DeleteRange<T>(T[] entityArray) where T : class
+        {
+            _context.RemoveRange(entityArray);
+        }
+
         public async Task<T> GetByIdAsync(int id) => await Task.Run(() => GetById(id));
     }
 }

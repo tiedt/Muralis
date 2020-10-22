@@ -1,22 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmpresaComponent } from './pages/cadastros/empresa/empresa.component';
-import { FornecedorComponent } from './pages/cadastros/fornecedor/fornecedor.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
-        path: 'cadastro/empresa',
-        component: EmpresaComponent
-      },
-      {
-        path: 'cadastro/fornecedor',
-        component: FornecedorComponent
-      }
-    ]
-  },
+  {path: 'empresa', loadChildren: './empresa/empresa.module#EmpresaModule'},
+  {path: 'fornecedor', loadChildren: './fornecedor/fornecedor.module#FornecedorModule'},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '**', redirectTo: 'dashboard', pathMatch: 'full'},
 ];
 
 @NgModule({

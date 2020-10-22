@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
@@ -18,6 +19,21 @@ namespace Domain.Entities
         [Required(AllowEmptyStrings = false, ErrorMessage = "A Empresa é obrigatória.")]
         public int EmpresaId { get; set; }
 
+        public TipoFornecedor TipoFornecedor { get; set; }
+
         public EmpresaEntity Empresa { get; set; }
+
+        public List<TelefoneFornecedorEntity> TelefoneFornecedor { get; set; }
     }
+
+    #region TipoFornecedor
+   public enum TipoFornecedor
+    {
+        [Description("Físico")]
+        Fisico = 1,
+        [Description("Jurídico")]
+        Juridico,
+
+    }
+    #endregion
 }

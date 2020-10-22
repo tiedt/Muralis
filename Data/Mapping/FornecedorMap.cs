@@ -13,6 +13,7 @@ namespace Data.Mapping
             builder.Property(c => c.Nome).IsRequired();
             builder.Property(c => c.CPFCNPJ).IsRequired();
             builder.Property(c => c.DataCadastro).IsRequired();
+            builder.Property(c => c.TipoFornecedor);
             builder.Property(c => c.RG);
             builder.Property(c => c.DataNascimento);
             builder.HasOne(bld => bld.Empresa)

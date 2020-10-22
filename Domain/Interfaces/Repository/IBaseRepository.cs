@@ -13,5 +13,8 @@ namespace Domain.Interfaces.Repository
         Task<IEnumerable<T>> ObterTodosAsync();
         Task<T> GetByIdAsync(int id);
         T GetById(int id);
+
+        void DeleteRange<T>(T[] entity) where T : class;
+
     }
 }
