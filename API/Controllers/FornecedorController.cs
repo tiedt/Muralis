@@ -36,8 +36,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterTodos = await _service.GetFornecedorAsync();
-                return Ok(obterTodos);
+                return Ok(await _service.GetFornecedorAsync());
             }
             catch (ArgumentException e)
             {
@@ -55,8 +54,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterPorId = await _service.GetFornecedorAsyncById(FornecedorId);
-                return Ok(obterPorId);
+                return Ok(await _service.GetFornecedorAsyncById(FornecedorId));
             }
             catch (ArgumentException e)
             {

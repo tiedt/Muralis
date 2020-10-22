@@ -30,8 +30,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterTodos = await _service.ObterTodosAsync();
-                return Ok(obterTodos);
+                return Ok(await _service.ObterTodosAsync());
             }
             catch (ArgumentException e)
             {
@@ -49,8 +48,7 @@ namespace Application.Controllers
 
             try
             {
-                var obterPorId = await _service.ObterPorIdAsync(EmpresaId);
-                return Ok(obterPorId);
+                return Ok(await _service.ObterPorIdAsync(EmpresaId));
             }
             catch (ArgumentException e)
             {

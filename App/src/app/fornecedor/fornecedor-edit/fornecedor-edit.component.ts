@@ -56,8 +56,6 @@ export class FornecedorEditComponent implements OnInit {
           (fornecedor: Fornecedor) => {
             this.fornecedor = Object.assign({}, fornecedor);
             this.registerForm.patchValue(this.fornecedor);
-            console.log(this.fornecedor);
-
             this.fornecedor.telefoneFornecedor.forEach(telefone => {
               this.telefoneFornecedor.push(this.criarTelefone(telefone));
             });
@@ -73,7 +71,8 @@ export class FornecedorEditComponent implements OnInit {
       cpfcnpj: [''],
       rg: [''],
       tipoFornecedor: ['', Validators.required],
-      dataNascimento: ['',],
+      dataNascimento: [''],
+      dataCadastro: [],
       telefoneFornecedor: this.fb.array([])
     });
   }
