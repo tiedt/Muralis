@@ -6,7 +6,7 @@ export class Fornecedor {
     public cpfcnpj: string;
     public rg?: string;
     public dataNascimento: any;
-    public dataCadastro: Date;
+    public dataCadastro?: any;
     public empresaId?: number;
     public tipoFornecedor: number;
     public telefoneFornecedor: TelefoneFornecedor[];

@@ -8,7 +8,6 @@ import { Fornecedor } from 'src/app/_modules/Fornecedor';
 import { EmpresaService } from 'src/app/_services/empresa.service';
 import { FornecedorService } from 'src/app/_services/fornecedor.service';
 import { defineLocale, ptBrLocale } from "ngx-bootstrap/chronos";
-import { async } from '@angular/core/testing';
 defineLocale("pt-br", ptBrLocale);
 @Component({
   selector: 'app-fornecedor-edit',
@@ -23,6 +22,7 @@ export class FornecedorEditComponent implements OnInit {
   verificaSeEhAlteracao = this.activateRouter.snapshot.params.id;
   modoSalvar = 'post';
   id: number;
+  dataCadastro: any;
 
   constructor(
     private fornecedorService: FornecedorService,
@@ -55,6 +55,7 @@ export class FornecedorEditComponent implements OnInit {
         .subscribe(
           (fornecedor: Fornecedor) => {
             this.fornecedor = Object.assign({}, fornecedor);
+            this.dataCadastro = this.fornecedor.dataCadastro;
             this.registerForm.patchValue(this.fornecedor);
             this.fornecedor.telefoneFornecedor.forEach(telefone => {
               this.telefoneFornecedor.push(this.criarTelefone(telefone));
@@ -72,7 +73,6 @@ export class FornecedorEditComponent implements OnInit {
       rg: [''],
       tipoFornecedor: ['', Validators.required],
       dataNascimento: [''],
-      dataCadastro: [],
       telefoneFornecedor: this.fb.array([])
     });
   }
@@ -129,6 +129,7 @@ export class FornecedorEditComponent implements OnInit {
       );
     } else {
       this.fornecedor = Object.assign({ id: this.id }, this.registerForm.value);
+      this.fornecedor.dataCadastro = this.dataCadastro;
       this.fornecedorService.editarFornecedor(this.fornecedor).subscribe(
         () => {
           this.toastr.success('Editado com Sucesso!');
