@@ -8,7 +8,7 @@ import { Empresa } from '../_modules/Empresa';
   providedIn: 'root'
 })
 export class EmpresaService {
-    baseUrl = "https://localhost:5001/Empresa";
+    baseUrl = "http://localhost:5001/Empresa";
     constructor(private http: HttpClient) { }
 
     adicionarEmpresa(model: Empresa): Observable<any> {

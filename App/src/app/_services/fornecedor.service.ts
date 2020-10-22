@@ -8,7 +8,7 @@ import { Fornecedor } from '../_modules/Fornecedor';
     providedIn: 'root'
 })
 export class FornecedorService {
-    baseUrl = "https://localhost:5001/Empresa";
+    baseUrl = "http://localhost:5001/Fornecedor";
     constructor(private http: HttpClient) { }
 
     adicionarFornecedor(model: Fornecedor): Observable<any> {
@@ -23,8 +23,8 @@ export class FornecedorService {
     obterFornecedorPorId(idFornecedor: number): Observable<any> {
         return this.http.get(`${this.baseUrl}/ObterFornecedorPorId?FornecedorId=${idFornecedor}`);
     }
-    obterFornecedor(): Observable<any> {
-        return this.http.get(`${this.baseUrl}`);
+    obterFornecedor(): Observable<Fornecedor[]> {
+        return this.http.get<Fornecedor[]>(`${this.baseUrl}`);
     }
 
 }

@@ -27,7 +27,7 @@
     <tr *ngFor="let fornecedor of fornecedoresFiltrados">
       <td>{{fornecedor.nome}}</td>
       <td>{{fornecedor.cpfcnpj}}</td>
-      <td>{{fornecedor.telefoneFornecedor[0].numeroTelefone}}</td>
+      <td>{{fornecedor.telefoneFornecedor[0]?.numeroTelefone}}</td>
       <td>
         <div class="btn-group">
           <button class="btn btn-sm btn-success" [routerLink]="['/fornecedor',fornecedor.id,'edit']" tooltip="Editar">

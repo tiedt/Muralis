@@ -89,7 +89,7 @@ export class FornecedorComponent implements OnInit {
         this.fornecedores = _fornecedores;
         this.fornecedoresFiltrados = this.fornecedores;
       }, error => {
-        this.toastr.error(`Erro ao tentar Carregar Fornecedors: ${error}`);
+        this.toastr.error(`Erro ao tentar Carregar Fornecedores: ${error}`);
       });
   }
   getEmpresas() {

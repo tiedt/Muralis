@@ -71,11 +71,13 @@ namespace Application.Controllers
         {
             try
             {
+                var fornecedor = _mapper.Map<FornecedorEntity>(model);
                 var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
-                var valida = await fornecedorValidation.ValidaFornecedor(model, obtemEmpresa);
+                var valida = await fornecedorValidation.ValidaFornecedor(fornecedor, obtemEmpresa);
                 if (valida.Any())
                     throw new ArgumentException(valida);
                 else
+                    model.DataCadastro = DateTime.UtcNow;
                     return Ok(_service.InsertAsync(model));
 
             }
