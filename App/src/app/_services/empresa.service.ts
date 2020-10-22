@@ -8,22 +8,22 @@ import { Empresa } from '../_modules/Empresa';
   providedIn: 'root'
 })
 export class EmpresaService {
-
+    baseUrl = "https://localhost:5001/Empresa";
     constructor(private http: HttpClient) { }
 
     adicionarEmpresa(model: Empresa): Observable<any> {
-      return this.http.post(`https://localhost:44392/Empresa`, model);
+      return this.http.post(`${this.baseUrl}`, model);
     }
     editarEmpresa(model: Empresa): Observable<any> {
-      return this.http.put(`https://localhost:44392/Empresa`, model);
+      return this.http.put(`${this.baseUrl}`, model);
     }
     excluirEmpresa(idEmpresa: number): Observable<any> {
-      return this.http.delete(`https://localhost:44392/Empresa/${idEmpresa}`);
+      return this.http.delete(`${this.baseUrl}/${idEmpresa}`);
     }
     obterEmpresaPorId(idEmpresa: any): Observable<any> {
-      return this.http.get<Empresa[]>(`https://localhost:44392/Empresa/por-id/${idEmpresa}`);
+      return this.http.get<Empresa[]>(`${this.baseUrl}/${idEmpresa}`);
     }
     obterEmpresa(): Observable<Empresa[]> {
-      return this.http.get<Empresa[]>(`https://localhost:44392/Empresa/GetAllEmpresas`);
+      return this.http.get<Empresa[]>(`${this.baseUrl}/GetAllEmpresas`);
     }
 }
