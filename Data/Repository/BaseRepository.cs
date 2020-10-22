@@ -47,6 +47,11 @@ namespace Data.Repository
             }
         }
 
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync()) > 0;
+        }
+
         public async Task<T> ObterPorIdAsync(int id)
         {
             try
@@ -104,6 +109,10 @@ namespace Data.Repository
         public void DeleteRange<T>(T[] entityArray) where T : class
         {
             _context.RemoveRange(entityArray);
+        }
+        public void Update<T>(T entity) where T : class
+        {
+            _context.Update(entity);
         }
 
         public async Task<T> GetByIdAsync(int id) => await Task.Run(() => GetById(id));

@@ -56,6 +56,7 @@ export class FornecedorEditComponent implements OnInit {
           (fornecedor: Fornecedor) => {
             this.fornecedor = Object.assign({}, fornecedor);
             this.registerForm.patchValue(this.fornecedor);
+            console.log(this.fornecedor);
 
             this.fornecedor.telefoneFornecedor.forEach(telefone => {
               this.telefoneFornecedor.push(this.criarTelefone(telefone));
@@ -122,10 +123,7 @@ export class FornecedorEditComponent implements OnInit {
           this.modoSalvar = 'put';
           this.toastr.success('Salvo com Sucesso!');
           this.toastr.success('Você irá ser redirecionado para a página de fornecedores');
-          setTimeout(() => {
-            this.router.navigate(['/fornecedor']);
-          },
-            6000);
+          this.router.navigate(['/fornecedor']);
         }, error => {
           this.toastr.error(`Erro ao Salvar: ${error.error}`);
         }

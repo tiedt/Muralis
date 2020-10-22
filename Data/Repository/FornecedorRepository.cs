@@ -30,7 +30,7 @@ namespace Data.Repository
         {
             IQueryable<FornecedorEntity> query = _context.Fornecedor.Include(c => c.TelefoneFornecedor);
 
-            query = query.AsNoTracking().OrderBy(c => c.Id);
+            query = query.AsNoTracking().OrderBy(c => c.Id).Where(c => c.Id == FornecedorId);
 
             return await query.FirstOrDefaultAsync();
 

@@ -1,53 +1,29 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repository;
 using System;
 using System.Threading.Tasks;
 using static Domain.Shared.Validacao;
 
 namespace Domain.Implementations.Validations
 {
-    public class FornecedorValidation
+    public static class FornecedorValidation
     {
-        protected readonly IEmpresaRepository _empresaRepository;
-        public FornecedorValidation()
+        public static async Task<string> ValidaFornecedor(FornecedorEntity fornecedor, EmpresaEntity empresa)
         {
-
-        }
-        public async Task<string> ValidaFornecedor(FornecedorEntity fornecedor, EmpresaEntity empresa)
-        {
-            var mensagem = "";
-            try
+            if (fornecedor.TipoFornecedor == TipoFornecedor.Fisico)
             {
-                if (fornecedor.CPFCNPJ.Length == 11)
-                {
-                    var validaCPF = ValidaCPF.IsCpf(fornecedor.CPFCNPJ);
-                    if (empresa.UF == UnidadeFederacaoSigla.PR && fornecedor.DataNascimento.Value.AddYears(18) >= DateTime.Now)
-                    {
-                        return mensagem = "Fornecedor não pode ser cadastrado por ser menor de idade";
-                    }
-                    if (!validaCPF)
-                    {
-                        return mensagem = "CPF Inválido";
-                    }
-                }
-                if(fornecedor.CPFCNPJ.Length == 14)
-                {
-                    var validaCNPJ = ValidaCNPJ.IsCnpj(fornecedor.CPFCNPJ);
-                    if (!validaCNPJ)
-                    {
-                        return mensagem = "CNPJ Inválido";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+                if (!ValidaCPF.IsCpf(fornecedor.CPFCNPJ))
+                    return "CPF Inválido";
 
-                throw new Exception(ex.Message);
+                if (empresa.UF == UnidadeFederacaoSigla.PR && fornecedor.DataNascimento.Value.AddYears(18) >= DateTime.Now)
+                    return "Fornecedor não pode ser cadastrado por ser menor de idade";
+
+                return "";
+
             }
-           
-            return mensagem;
+            return EmpresaValidation.ValidarCNPJEmpresa(empresa.CNPJ);
         }
-
     }
+
 }
+
 

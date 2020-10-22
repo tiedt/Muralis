@@ -7,7 +7,6 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Implementations.Validations;
 using Domain.Interfaces.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers
@@ -19,9 +18,8 @@ namespace Application.Controllers
         protected readonly IFornecedorRepository _service;
         protected readonly IEmpresaRepository _empresa;
         private readonly IMapper _mapper;
-        FornecedorValidation fornecedorValidation = new FornecedorValidation();
 
-        public FornecedorController(IFornecedorRepository service,IEmpresaRepository empresa, IMapper mapper)
+        public FornecedorController(IFornecedorRepository service, IEmpresaRepository empresa, IMapper mapper)
         {
             _service = service;
             _empresa = empresa;
@@ -71,14 +69,15 @@ namespace Application.Controllers
         {
             try
             {
+
                 var fornecedor = _mapper.Map<FornecedorEntity>(model);
                 var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
-                var valida = await fornecedorValidation.ValidaFornecedor(fornecedor, obtemEmpresa);
+                var valida = await FornecedorValidation.ValidaFornecedor(fornecedor, obtemEmpresa);
                 if (valida.Any())
                     throw new ArgumentException(valida);
-                else
-                    model.DataCadastro = DateTime.UtcNow;
-                    return Ok(_service.InsertAsync(model));
+
+                model.DataCadastro = DateTime.Now;
+                return Ok(_service.InsertAsync(model));
 
             }
             catch (ArgumentException ex)
@@ -98,25 +97,31 @@ namespace Application.Controllers
                 var idTelefone = new List<int>();
                 model.TelefoneFornecedor.ForEach(item => idTelefone.Add(item.Id));
 
-                var telefones = fornecedor.TelefoneFornecedor.Where(telefones => !idTelefone.Contains(telefones.Id)).ToArray();
+                var telefones = fornecedor.TelefoneFornecedor.Where(telefone => !idTelefone.Contains(telefone.Id)).ToArray();
 
                 if (telefones.Length > 0) _service.DeleteRange(telefones);
 
                 _mapper.Map(model, fornecedor);
 
                 var obtemEmpresa = await _empresa.ObterPorIdAsync(model.EmpresaId);
-                var valida = await fornecedorValidation.ValidaFornecedor(model, obtemEmpresa);
+                var valida = await FornecedorValidation.ValidaFornecedor(model, obtemEmpresa);
 
                 if (valida.Any())
                     throw new ArgumentException(valida);
-                else
-                    return Ok(_service.UpdateAsync(model));
+
+                _service.Update(model);
+
+                if(await _service.SaveChangesAsync())
+                    return Ok(_mapper.Map<FornecedorEntity>(model));
+                
 
             }
             catch (ArgumentException ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
+
+            return BadRequest();
         }
 
         [HttpDelete("{FornecedorId}")]

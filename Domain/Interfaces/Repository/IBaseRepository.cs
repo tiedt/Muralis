@@ -12,8 +12,9 @@ namespace Domain.Interfaces.Repository
         Task<T> ObterPorIdAsync(int id);
         Task<IEnumerable<T>> ObterTodosAsync();
         Task<T> GetByIdAsync(int id);
+        Task<bool> SaveChangesAsync();
         T GetById(int id);
-
+        void Update<T>(T entity) where T : class;
         void DeleteRange<T>(T[] entity) where T : class;
 
     }

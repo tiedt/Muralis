@@ -3,21 +3,15 @@ using static Domain.Shared.Validacao;
 
 namespace Domain.Implementations
 {
-    public class EmpresaValidation
+    public static class EmpresaValidation
     {
-        public EmpresaValidation()
+        public static string ValidarCNPJEmpresa(string cnpj)
         {
-        }
-
-        public string ValidarDadosEmpresa(EmpresaEntity model)
-        {
-            var mensagem = "";
-            var validaCNPJ = ValidaCNPJ.IsCnpj(model.CNPJ);
-            if (!validaCNPJ)
+            if (!ValidaCNPJ.IsCnpj(cnpj))
             {
-                mensagem = "CNPJ não é válido";
+                return "CNPJ não é válido";
             }
-            return mensagem;
+            return "";
         }
     }
 }

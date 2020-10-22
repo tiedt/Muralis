@@ -14,7 +14,6 @@ namespace Application.Controllers
     public class EmpresaController : ControllerBase
     {
         protected readonly IEmpresaRepository _service;
-        EmpresaValidation empresaValidation = new EmpresaValidation();
 
         public EmpresaController(IEmpresaRepository service)
         {
@@ -62,15 +61,10 @@ namespace Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(EmpresaEntity model)
         {
-            
             try
             {
-                var validaDadosEmpresa = empresaValidation.ValidarDadosEmpresa(model);
-                if (validaDadosEmpresa.Any())
-                    throw new ArgumentException(validaDadosEmpresa);
-                else
-                    return Ok(_service.InsertAsync(model));
-
+                ValidaDadosEmpresa(model);
+                return Ok(_service.InsertAsync(model));
             }
             catch (ArgumentException ex)
             {
@@ -83,16 +77,20 @@ namespace Application.Controllers
         {
             try
             {
-                var validaDadosEmpresa = empresaValidation.ValidarDadosEmpresa(model);
-                if (validaDadosEmpresa.Any())
-                    throw new ArgumentException(validaDadosEmpresa);
-                else
-                    return Ok(_service.UpdateAsync(model));
+                ValidaDadosEmpresa(model);
+                return Ok(_service.UpdateAsync(model));
             }
             catch (ArgumentException ex)
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
+        }
+
+        private void ValidaDadosEmpresa(EmpresaEntity model)
+        {
+            var validaDadosEmpresa = EmpresaValidation.ValidarCNPJEmpresa(model.CNPJ);
+            if (validaDadosEmpresa.Any())
+                throw new ArgumentException(validaDadosEmpresa);
         }
 
         [HttpDelete("{EmpresaId}")]
