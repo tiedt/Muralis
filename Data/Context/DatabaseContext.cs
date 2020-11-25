@@ -1,5 +1,4 @@
-﻿using Data.Mapping;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
@@ -10,8 +9,8 @@ namespace Data.Context
         {
         }
 
-        public DbSet<EmpresaEntity> Empresa { get; set; }
-        public DbSet<FornecedorEntity> Fornecedor { get; set; }
+        public DbSet<FaleConoscoEntity> FaleConosco { get; set; }
+        public DbSet<QuemSomosEntity> QuemSomos{ get; set; }
 
     }
 }

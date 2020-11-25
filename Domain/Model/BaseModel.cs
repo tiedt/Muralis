@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace Domain.Entities
+
+namespace Domain.Model
 {
-    public class BaseEntity
+    public class BaseModel
     {
         [Key]
         public long Id { get; set; }

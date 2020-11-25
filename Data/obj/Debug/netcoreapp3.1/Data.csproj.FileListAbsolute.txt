@@ -11,3 +11,7 @@ C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Data\obj\Debug\netcoreapp3.1\
 C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Data\obj\Debug\netcoreapp3.1\Data.csproj.CopyComplete
 C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Data\obj\Debug\netcoreapp3.1\Data.dll
 C:\Users\TIEDT\Desktop\exercicioDeConhecimento\API\Data\obj\Debug\netcoreapp3.1\Data.pdb
+C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache

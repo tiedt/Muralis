@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Data\\Data.csproj": {}
+    "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Data\\Data.csproj": {
+    "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\TIEDT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Data\\obj\\",
+        "projectPath": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\renna.tiedt\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\TIEDT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\renna.tiedt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -31,9 +30,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\Domain.csproj"
+              "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\Domain.csproj"
               }
             }
           }
@@ -46,6 +46,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -89,25 +90,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\Domain.csproj": {
+    "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\TIEDT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TIEDT\\Desktop\\exercicioDeConhecimento\\API\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\renna.tiedt\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\renna.tiedt\\Desktop\\Nova pasta\\Muralis\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\TIEDT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\renna.tiedt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -120,6 +120,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -131,6 +132,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -146,7 +148,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
