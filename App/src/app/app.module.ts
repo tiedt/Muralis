@@ -1,34 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SharedModule } from './_shared/_module/shared.module';
-import { FornecedorModule } from './fornecedor/fornecedor.module';
-import { EmpresaModule } from './empresa/empresa.module';
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { QuemSomosComponent } from './pages/quem-somos/quem-somos.component';
+import { FaleConoscoComponent } from './pages/fale-conosco/fale-conosco.component';
+import { BrMaskerModule } from 'brmasker-ionic-3/dist/app.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      DashboardComponent,
-      NavComponent,
-      DashboardComponent,
-   ],
-   imports: [
-      EmpresaModule,
-      FornecedorModule,
-      SharedModule,
-      BrowserModule,
-      BrowserAnimationsModule,
-      AppRoutingModule,
-      HttpClientModule,
-   ],
-   providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    QuemSomosComponent,
+    FaleConoscoComponent
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrMaskerModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

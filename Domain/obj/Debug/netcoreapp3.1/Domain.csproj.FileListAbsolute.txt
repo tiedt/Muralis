@@ -15,3 +15,11 @@ C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Domain\obj\Debug\netcoreapp3.1\D
 C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
 C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.dll
 C:\Users\renna.tiedt\Desktop\Nova pasta\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.dll
+C:\Users\TIEDT\Desktop\Muralis\Muralis\Domain\obj\Debug\netcoreapp3.1\Domain.pdb

@@ -17,7 +17,7 @@ namespace Data.Repository
             _context = context;
             _dataSet = context.Set<T>();
         }
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(long id)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Data.Repository
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public async Task<T> ObterPorIdAsync(int id)
+        public async Task<T> ObterPorIdAsync(long id)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Data.Repository
 
         }
 
-        public T GetById(int id)
+        public T GetById(long id)
         {
             var entityResult = _context.Set<T>().Find(id);
 
@@ -115,6 +115,6 @@ namespace Data.Repository
             _context.Update(entity);
         }
 
-        public async Task<T> GetByIdAsync(int id) => await Task.Run(() => GetById(id));
+        public async Task<T> GetByIdAsync(long id) => await Task.Run(() => GetById(id));
     }
 }

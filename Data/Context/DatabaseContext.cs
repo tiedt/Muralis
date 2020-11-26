@@ -11,6 +11,6 @@ namespace Data.Context
 
         public DbSet<FaleConoscoEntity> FaleConosco { get; set; }
         public DbSet<QuemSomosEntity> QuemSomos{ get; set; }
-
+        public DbSet<BannerEntity> Banner { get; set; }
     }
 }

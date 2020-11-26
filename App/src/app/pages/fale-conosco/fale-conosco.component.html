@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="texto-fale-conosco">
+            Fale Conosco
+        </div>
+    </div>
+    <div class="col-md-6 afasta-form">
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email*</label>
+              <input type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insira seu e-mail">
+              <small id="emailHelp" class="form-text text-muted">
+                Nunca compartilharemos seu e-mail com mais ninguém.</small>
+            </div>
+            <div class="form-group">
+                <label>Nome Completo*</label>
+                <input required type="text" class="form-control" placeholder="Insira seu nome completo">
+              </div>
+              <div class="form-group">
+                <label>Telefone*</label>
+                <input required type="tel" class="form-control" [brmasker]="{mask:'(99) 99999-9999', len:15}" placeholder="Insira seu nome completo">
+              </div>
+            <div class="form-group">
+                <label>Mensagem*</label>
+                <textarea class="form-control" rows="4" placeholder="Insira sua mensagem aqui"></textarea>
+              </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+    </div>
+</div>
+

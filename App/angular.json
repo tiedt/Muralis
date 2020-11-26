@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Project-App": {
+    "Muralis": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Project-App",
+            "outputPath": "dist/Muralis",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,10 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -66,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Project-App:build"
+            "browserTarget": "Muralis:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Project-App:build:production"
+              "browserTarget": "Muralis:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Project-App:build"
+            "browserTarget": "Muralis:build"
           }
         },
         "test": {
@@ -92,9 +93,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -116,16 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Project-App:serve"
+            "devServerTarget": "Muralis:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Project-App:serve:production"
+              "devServerTarget": "Muralis:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "Project-App"
+    }},
+  "defaultProject": "Muralis"
 }
